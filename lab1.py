@@ -12,7 +12,11 @@ print("Τα headers είναι: \n\n")
 for key,value in headers.items():
     print(key,":",value,"\n")
 
-print("\nΤο λογισμικό που χρησιμοποιεί ο εξυπηρετητής (ο web server) για να απαντήσει στο αίτημα είναι: ",headers['Server'])
+server=headers.get('Server')
+if server:
+    print("\nΤο λογισμικό που χρησιμοποιεί ο εξυπηρετητής (ο web server) για να απαντήσει στο αίτημα είναι: ",server)
+else:
+    print("Server not found")
 
 if(len(response.cookies)==0):print("Η σελίδα δεν χρησιμοποιεί cookies")
 else:
