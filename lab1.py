@@ -29,7 +29,7 @@ for cookie in response.cookies:
 
     print("Cookie name: ",cookie.name)
     try:
-        print('Expiration Date: ',datetime.datetime.fromtimestamp(cookie.expires).strftime('%c'))
+        print('Expiration Date(local time): ',datetime.datetime.fromtimestamp(cookie.expires).strftime('%c'))
         remaining=   cookie.expires- int(time.time())
         print("Time left to expire: ", remaining,"s")
     except Exception:
