@@ -1,5 +1,7 @@
 import requests
+import datetime
 import time
+
 
 url= input("Give url: ")   
 
@@ -14,19 +16,17 @@ print("\nΤο λογισμικό που χρησιμοποιεί ο εξυπηρ
 
 if(len(response.cookies)==0):print("Η σελίδα δεν χρησιμοποιεί cookies")
 else:
-    print("Η σελίδα  χρησιμοποιεί cookies")
+    print("Η σελίδα  χρησιμοποιεί cookies\n")
+
+cookie_header= headers['Set-Cookie']
+print(cookie_header,"\n\n")
 
 for cookie in response.cookies:
 
-    print("Cookie name: ", cookie.name)
-
-    if(cookie.expires!=None):
-
+    print("Cookie name: ",cookie.name)
+    try:
+        print('Expiration Date: ',datetime.datetime.fromtimestamp(cookie.expires).strftime('%c'))
         remaining=   cookie.expires- int(time.time())
         print("Time left to expire: ", remaining,"s")
-
-    else:
-
-        print("To cookie tha sbisti otan klisi o browser")
-
-
+    except Exception:
+        print("No expiration date (Cookie expires when browser closes)")
